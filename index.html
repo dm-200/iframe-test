@@ -23,26 +23,6 @@
 
         const bookingFrame = document.getElementById("booking-frame");
 
-        // Client theme
-        const theme = {
-            background: "transparent",
-            card: "#EAF4FF",
-            surface: "#CFE4FA",
-            message: "#EAF4FF"
-        };
-
-        function sendTheme() {
-            if (!bookingFrame.contentWindow) return;
-
-            bookingFrame.contentWindow.postMessage(
-                {
-                    type: "booking:theme",
-                    theme: theme
-                },
-                BOOKING_ORIGIN
-            );
-        }
-
         // Preserve the original iframe resize behavior.
         window.addEventListener("message", event => {
             if (event.origin !== BOOKING_ORIGIN) return;
@@ -56,9 +36,6 @@
                 }
             }
         });
-
-        // Send colors after the booking page loads.
-        bookingFrame.addEventListener("load", sendTheme);
     </script>
 
 </body>
